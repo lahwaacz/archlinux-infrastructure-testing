@@ -1,0 +1,14 @@
+fastcgi_cache: wiki
+
+vault_mariadb_users:
+  root: super-secret-password
+
+
+archwiki_domain: "localhost"
+vault_archwiki_db_password: super-secret-password
+vault_archwiki_wg_secret_key: secret-archwiki-wg-secret-key
+vault_archwiki_wg_upgrade_key: secret-archwiki-wg-upgrade-key
+
+archwiki_install_admin: "LocalUser"
+archwiki_install_admin_password: local-user-password
+archwiki_install_scriptpath: ""

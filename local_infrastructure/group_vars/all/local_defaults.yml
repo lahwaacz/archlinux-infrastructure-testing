@@ -1,0 +1,4 @@
+# root file system inside docker containers
+filesystem: "overlay"
+
+configure_firewall: true
