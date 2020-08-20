@@ -1,0 +1,3 @@
+[submodule "arch_infrastructure"]
+	path = arch_infrastructure
+	url = https://gitlab.archlinux.org/archlinux/infrastructure.git
