@@ -2,6 +2,7 @@ fastcgi_cache: wiki
 
 vault_mariadb_users:
   root: super-secret-password
+  zabbix_agent: zabbix-agent-db-password
 
 
 archwiki_domain: "localhost"
