@@ -82,4 +82,9 @@ at all for local containers (e.g. `archusers`, `root_ssh`, `borg-client` etc.)
 In general we also cannot use Let's Encrypt in Docker containers so some
 services have to be modified to be accessible over plain HTTP.
 
+__Note:__
+> The `arch_infrastructure` submodule tracks a custom repository/branch with
+> the necessary changes by default:
+> https://github.com/lahwaacz/archlinux-infrastructure/commits/local-docker
+
 TODO: add more details

@@ -1,3 +1,4 @@
 [submodule "arch_infrastructure"]
 	path = arch_infrastructure
-	url = https://gitlab.archlinux.org/archlinux/infrastructure.git
+	url = https://github.com/lahwaacz/archlinux-infrastructure.git
+	branch = local-docker
