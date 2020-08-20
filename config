@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# container name (also used as its hostname)
+# NOTE: we can't rely on ansible setting the hostname, see
+# https://www.reddit.com/r/ansible/comments/hi32r2/how_to_test_hostname_module_inside_docker/
+container=local-archwiki
+
+# host port for accessing the container's SSH service
+host_ssh_port=2222
+
+# host port for accessing the container's HTTP service
+host_http_port=8000
+
+# check if there is a committed image, otherwise use the base image
+image=$(docker image ls --quiet "$container:committed")
+if [[ "$image" == "" ]]; then
+    image="arch_infra:base"
+fi

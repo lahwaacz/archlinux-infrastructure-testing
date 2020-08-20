@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+pushd $(dirname $BASH_SOURCE)
+
+source config
+
+# SYS_ADMIN capability and bind-mounted cgroup are needed for properly running systemd as PID 1
+# see https://github.com/moby/moby/issues/3629
+docker run --detach --publish "$host_ssh_port:22" --publish "$host_http_port:80" \
+    --cap-add SYS_ADMIN -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+    --name "$container" \
+    --hostname "$container" \
+    "$image"

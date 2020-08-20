@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+pushd $(dirname $BASH_SOURCE)
+
+if [[ ! -f ./files/authorized_keys ]]; then
+    echo "The ./files/authorized_keys must be created manually."
+    exit 1
+fi
+
+# copy the mirrorlist from the host to speed up
+if [[ ! -f ./files/mirrorlist ]]; then
+    cp /etc/pacman.d/mirrorlist ./files/
+fi
+
+docker build --tag arch_infra:base .
