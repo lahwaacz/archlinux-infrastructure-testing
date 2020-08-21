@@ -1,3 +1,6 @@
+# Dockerfile reference:
+# https://docs.docker.com/engine/reference/builder/
+
 FROM archlinux
 
 # copy the mirrorlist from the host to speed up the image build
