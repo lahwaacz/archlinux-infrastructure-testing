@@ -6,6 +6,7 @@ vault_mariadb_users:
 
 
 archwiki_domain: "localhost"
+archwiki_wg_server: "http://{{ archwiki_domain }}:8000"
 vault_archwiki_db_password: super-secret-password
 vault_archwiki_wg_secret_key: secret-archwiki-wg-secret-key
 vault_archwiki_wg_upgrade_key: secret-archwiki-wg-upgrade-key
