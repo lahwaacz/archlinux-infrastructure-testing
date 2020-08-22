@@ -1,0 +1,45 @@
+#!/bin/bash
+
+set -e
+
+pushd $(dirname $BASH_SOURCE)
+
+container_name="$1"
+container_path="/var/lib/machines/$container_name"
+
+if [[ "$container_name" == "" ]]; then
+    echo "Usage: $0 <container-name>" >&2
+    exit 1
+fi
+
+if [[ ! -f ./files/authorized_keys ]]; then
+    echo "The ./files/authorized_keys must be created manually."
+    exit 1
+fi
+
+# check if the container is running
+show=$(machinectl show "$container_name" 2>/dev/null || true)
+if [[ "$show" != "" ]]; then
+    echo "Error: machine with name $container_name is already running. " >&2
+    echo "Stop it and run this script again to re-create its image." >&2
+    exit 1
+fi
+
+# remove existing image if it exists
+if [[ -d "$container_path" ]]; then
+    echo "Removing existing container $container_name from systemd-machined..."
+    sudo machinectl remove "$container_name"
+fi
+
+
+echo "Running pacstrap..."
+sudo mkdir -p "$container_path"
+sudo pacstrap -c "$container_path" base openssh python-requests python-yaml
+
+echo "Configuring services..."
+sudo arch-chroot "$container_path" systemctl enable sshd systemd-networkd systemd-resolved
+sudo ln -sf "/run/systemd/resolve/stub-resolv.conf" "$container_path/etc/resolv.conf"
+
+echo "Configuring SSH access..."
+sudo install -dm700 "$container_path/root/.ssh/"
+sudo install -m600 "./files/authorized_keys" "$container_path/root/.ssh/authorized_keys"

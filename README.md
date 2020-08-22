@@ -17,6 +17,8 @@ favourite setup, feel free to share!
 ## Set up a container
 
 - [Docker](https://www.docker.com/) – see [docker/README.md](./docker/README.md)
+- [systemd-nspawn](https://wiki.archlinux.org/index.php/systemd-nspawn) – see
+  [systemd-nspawn/README.md](./systemd-nspawn/README.md)
 
 ## Ansible
 
